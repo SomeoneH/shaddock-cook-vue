@@ -1,0 +1,13 @@
+:root {
+  --headerHeight: 88px;
+  --bottomNavigationHeight: 98px;
+}
+
+/* 通过Symbol方式引入iconfont所需添加的样式 */
+.icon-font {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
