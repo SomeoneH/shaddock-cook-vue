@@ -1,8 +1,9 @@
 <script setup>
 import { ref, reactive } from "vue";
+import { getAssetsFile } from "@/utils/getAssetsFile.js";
 import BtmNavBar from "@/components/btmNavBar/index.vue";
 import Swipe from "@/components/swipe/index.vue";
-import { getAssetsFile } from "@/utils/getAssetsFile.js";
+
 const searchStr = ref(""); // 搜索关键字
 const unReadMessageCount = ref("3"); // 未读消息的数量
 const swipeList = reactive([

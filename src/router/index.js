@@ -9,6 +9,14 @@ const router = createRouter({
       redirect:'/home',
     },
     {
+      path: '/launch',
+      name: 'launch',
+      component: () => import("@/views/launch/launch.vue"),
+      meta: {
+        index: 1
+      }
+    },
+    {
       path: '/home',
       name: 'home',
       component: () => import("@/views/home/home.vue"),
