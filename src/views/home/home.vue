@@ -3,6 +3,7 @@ import { ref, reactive } from "vue";
 import { getAssetsFile } from "@/utils/getAssetsFile.js";
 import BtmNavBar from "@/components/btmNavBar/index.vue";
 import Swipe from "@/components/swipe/index.vue";
+import Header from "@/components/header/index.vue";
 
 const searchStr = ref(""); // 搜索关键字
 const unReadMessageCount = ref("3"); // 未读消息的数量
@@ -115,29 +116,27 @@ function like(item) {
 
 <template>
   <div class="shaddock_cook_page_home">
-    <div class="header_container">
-      <div class="header">
-        <div class="left">
-          <van-icon class-prefix="shaddock-icon" name="plus" />
-        </div>
-        <div class="middle">
-          <van-search
-            class="search"
-            v-model="searchStr"
-            placeholder="请输入食谱、食材"
-            @search="search"
-          />
-        </div>
-        <div class="right">
-          <van-icon
-            class-prefix="shaddock-icon"
-            name="message"
-            :badge="unReadMessageCount"
-            :show-zero="false"
-          />
-        </div>
-      </div>
-    </div>
+    <Header>
+      <template #left>
+        <van-icon class-prefix="shaddock-icon" name="plus" />
+      </template>
+      <template #middle>
+        <van-search
+          class="search"
+          v-model="searchStr"
+          placeholder="请输入食谱、食材"
+          @search="search"
+        />
+      </template>
+      <template #right>
+        <van-icon
+          class-prefix="shaddock-icon"
+          name="message"
+          :badge="unReadMessageCount"
+          :show-zero="false"
+        />
+      </template>
+    </Header>
     <div class="content_container">
       <div class="swipe_container">
         <Swipe :list="swipeList"></Swipe>
@@ -183,27 +182,12 @@ function like(item) {
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/css/mixin.scss";
 .shaddock_cook_page_home {
   // padding: 0 30px;
   // height: 100vh;
   .header_container {
-    height: var(--headerHeight);
-    background: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0 30px;
-    z-index: 1000;
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: var(--headerHeight);
-    }
     .middle {
-      flex: 1;
-      text-align: center;
       .search {
         padding: 0 24px;
         margin: 0 24px;
@@ -220,8 +204,6 @@ function like(item) {
     }
     .left,
     .right {
-      display: flex;
-      align-items: center;
       .shaddock-icon {
         font-size: 40px;
       }
@@ -245,7 +227,7 @@ function like(item) {
         }
         .right {
           font-size: 30px;
-          color: #ffbf40;
+          color: $primaryColor;
           cursor: pointer;
         }
       }
@@ -286,11 +268,13 @@ function like(item) {
               .user {
                 display: flex;
                 align-items: center;
-                .avatar img {
-                  width: 30px;
-                  height: 30px;
-                  border-radius: 50%;
-                  margin-right: 10px;
+                .avatar {
+                  img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                  }
                 }
                 .name {
                   color: #999;

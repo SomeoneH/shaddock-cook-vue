@@ -5,10 +5,21 @@ import vue from '@vitejs/plugin-vue'
 import autoprefixer from "autoprefixer";
 import postCssPxToRem from "postcss-pxtorem";
 // https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [
     vue(),
   ],
+  server: {
+    // 配置反向代理
+    proxy: {
+      "/shaddock": {
+        target: "http://localhost:8081", // 目标后端服务器地址
+        changeOrigin: true, // 是否改变源地址
+        // rewrite: (path) => path.replace(/^\/api/, ''), // 重写路径
+      }
+    }
+  },
   css: {
     postcss: {
       plugins: [

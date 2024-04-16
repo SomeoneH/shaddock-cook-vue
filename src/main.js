@@ -7,7 +7,7 @@ import 'vant/lib/index.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { Button, Icon, Search, Swipe, SwipeItem } from 'vant';
+import { Button, Icon, Search, Swipe, SwipeItem, Form, Field, CellGroup, Divider, Toast } from 'vant';
 
 import App from './App.vue'
 import router from './router'
@@ -21,5 +21,10 @@ app.use(router)
   .use(Search)
   .use(Swipe)
   .use(SwipeItem)
+  .use(Form)
+  .use(Field)
+  .use(CellGroup)
+  .use(Divider)
+  .use(Toast)
 
 app.mount('#app')

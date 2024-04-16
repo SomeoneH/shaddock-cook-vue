@@ -33,6 +33,7 @@ function swipeChange(index) {
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/css/mixin.scss";
 .shaddock_cook_page_launch {
   height: 100%;
   display: flex;
@@ -43,7 +44,7 @@ function swipeChange(index) {
     justify-content: center;
     align-items: center;
     .btn {
-      border: 2px solid #ffbf40;
+      border: 2px solid $primaryColor;
       font-size: 44px;
       font-weight: 600;
       border-radius: 14px;
