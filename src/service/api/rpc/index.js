@@ -16,7 +16,6 @@ const instance = axios.create({
 //请求拦截
 instance.interceptors.request.use(
   (data) => {
-    console.log("请求拦截", data)
     if (tokenStore.token) {
       data.headers.token = tokenStore.token
     }
@@ -30,17 +29,20 @@ instance.interceptors.request.use(
 //响应拦截
 instance.interceptors.response.use(
   (response) => {
-    console.log("response", response)
     // 接口正常响应
     if (response.data?.resultCode == 200) {
       return Promise.resolve(response);
+    } else if (response.data?.resultCode == 416) {
+      // 未登录
+      showFailToast(response.data?.message);
+      router.push("/login")
+      return Promise.reject(response)
     } else {
       showFailToast(response.data?.message);
       return Promise.reject(response)
     }
   },
   (error) => {
-    console.log("error", error)
     showFailToast(error.message);
     return Promise.reject(error)
   }

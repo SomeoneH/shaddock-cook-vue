@@ -2,7 +2,7 @@
 import { ref, reactive } from "vue";
 import { getAssetsFile } from "@/utils/getAssetsFile.js";
 import { useRouter } from "vue-router";
-import { userLogin } from "@/service/api/user";
+import api from "@/service/api";
 import md5 from "js-md5"
 import { showSuccessToast } from "vant";
 import { useTokenStore } from '@/stores/token.js'
@@ -52,7 +52,7 @@ function validator(prop, value, rule) {
 async function onSubmit() {
   const params = JSON.parse(JSON.stringify(formData))
   params.password = params.confirmPassword = md5(params.password)
-  const res = await userLogin(params)
+  const res = await api.user.userLogin(params)
   tokenStore.setToken(res.data)
   showSuccessToast(res.message)
   back()

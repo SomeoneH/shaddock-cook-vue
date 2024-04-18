@@ -7,15 +7,18 @@ import 'vant/lib/index.css';
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { Button, Icon, Search, Swipe, SwipeItem, Form, Field, CellGroup, Divider, Toast } from 'vant';
 
 import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
-app.use(createPinia())
-app.use(router)
+app.use(pinia)
+  .use(router)
   .use(Button)
   .use(Icon)
   .use(Search)

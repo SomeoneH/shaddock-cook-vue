@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { userRegister } from "@/service/api/user";
+import api from "@/service/api";
 import md5 from "js-md5"
 import { showFailToast, showSuccessToast } from "vant";
 import Header from "@/components/header/index.vue";
@@ -53,7 +53,7 @@ async function onSubmit() {
   if (!isChecked.value) return showFailToast("请先阅读并同意用户协议及隐私政策")
   const params = JSON.parse(JSON.stringify(formData))
   params.password = params.confirmPassword = md5(params.password)
-  const res = await userRegister(params)
+  const res = await api.user.userRegister(params)
   showSuccessToast(res.message)
   back()
 }
