@@ -164,6 +164,7 @@ function search(event) {
           }
           .title {
             font-size: 27px;
+            font-weight: 600;
           }
         }
       }
